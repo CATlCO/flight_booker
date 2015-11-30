@@ -1,0 +1,22 @@
+<h1>New booking</h1>
+Flight no.: <%= @flight.id %>
+From: <%= @flight.from_airport.name %>
+To: <%= @flight.to_airport.name %>
+Departing: <%= @flight.date.strftime("%d %b %Y") %> at <%= @flight.hour %>
+Duration: <%= @flight.duration %>
+<h3>Passengers</h3>
+<%= form_for @booking do |f| %>
+	<%= f.hidden_field :flight_id %>
+	<ul>
+		<%= f.fields_for :passangers do |p| %>
+			<li>
+				Passanger: 
+				<%= p.label :name %>
+				<%= p.text_field :name %>
+				<%= p.label :email %>
+				<%= p.email_field :email %>
+			</li>
+		<% end %>
+	</ul>
+	<%= f.submit "Save booking" %>
+<% end %>

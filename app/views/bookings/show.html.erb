@@ -1,0 +1,17 @@
+<h1>Thank you. Your booking is confirmed.</h1>
+<h2>Flight</h2>
+Flight no.: <%= @booking.flight.id %>
+From: <%= @booking.flight.from_airport.name %>
+To: <%= @booking.flight.to_airport.name %>
+Departing: <%= @booking.flight.date.strftime("%d %b %Y") %> at <%= @booking.flight.hour %>
+Duration: <%= @booking.flight.duration %>
+<h2>Passangers</h2>
+<ul>
+	<% @booking.passangers.each_with_index do |p, i| %>
+		<li>Pasanger <%= i+1 %>:<br>
+		Name: <%= p.name %>
+		Email: <%= p.email %>
+		</li>
+	<% end %>
+</ul>
+

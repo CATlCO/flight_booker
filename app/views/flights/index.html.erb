@@ -1,0 +1,28 @@
+<h1>Search flights</h1>
+<%= form_tag(root_url, method: "get") do %>
+	<%= label_tag :from, "From" %>
+	<%= select_tag :from, options_from_collection_for_select(Airport.all, :id, :name) %>
+	<%= label_tag :to, "To" %>
+	<%= select_tag :to, options_from_collection_for_select(Airport.all, :id, :name) %>
+	<%= label_tag :date, "Date" %>
+	<%= select_tag :date, options_for_select(@dates) %>
+	<%= label_tag :no_of_pas, "Number of passengers" %>
+	<%= select_tag :no_of_pas, options_for_select([1, 2, 3, 4]) %>
+	<%= submit_tag "Search" %>
+<% end %>
+<% unless @flights.empty? %>
+	<%= form_tag("bookings/new", method: "get") do %>
+		<%= hidden_field_tag :no_of_pas, params[:no_of_pas] %>
+		<table>
+			<tr>
+				<td><td>
+				<td><%= label_tag "From" %></td>
+				<td><%= label_tag "To" %></td>
+				<td><%= label_tag "Date" %></td>
+				<td><%= label_tag "Duration" %></td>
+			</tr>
+			<%= render @flights %>
+		</table>
+		<%= submit_tag "Book flight" %>
+	<% end %>
+<% end %>

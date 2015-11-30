@@ -1,0 +1,7 @@
+<tr>
+	<td><%= radio_button_tag(:flight_id, flight.id) %></td>
+	<td><%= flight.from_airport.name %></td>
+	<td><%= flight.to_airport.name %></td>
+	<td><%= flight.date.strftime("%d %b %Y") %> at <%= flight.hour %></td>
+	<td><%= flight.duration %></td>
+</tr>
