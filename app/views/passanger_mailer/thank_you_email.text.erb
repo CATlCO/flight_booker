@@ -1,0 +1,18 @@
+Thank you. Your booking is confirmed.
+====================================================================
+
+Flight
+Flight no.: <%= @booking.flight.id %>
+From: <%= @booking.flight.from_airport.name %>
+To: <%= @booking.flight.to_airport.name %>
+Departing: <%= @booking.flight.date.strftime("%d %b %Y") %> at <%= @booking.flight.hour %>
+Duration: <%= @booking.flight.duration %>
+
+---------------------------------------------------------------------
+
+Passangers
+	<% @booking.passangers.each_with_index do |p, i| %>
+		Pasanger <%= i+1 %>:
+		Name: <%= p.name %>
+		Email: <%= p.email %>
+	<% end %>

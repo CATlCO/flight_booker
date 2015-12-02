@@ -7,8 +7,13 @@ class BookingsController < ApplicationController
 	end
 
 	def create
-		@booking = Booking.create(booking_params)
-		redirect_to @booking
+		@booking = Booking.new(booking_params)
+		if @booking.save
+			PassangerMailer.thank_you_email(@booking.passangers.first).deliver_now
+			redirect_to @booking
+		else
+			render :new
+		end
 	end
 
 	def show
